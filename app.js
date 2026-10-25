@@ -95,7 +95,6 @@
   $("#start-quest").addEventListener("click",()=>{document.querySelector("#quests").scrollIntoView({behavior:"smooth",block:"start"});});
   document.querySelectorAll(".launch-maths").forEach(button=>button.addEventListener("click",openQuiz));
   $("#close-quiz").addEventListener("click",closeQuiz);
-  $("#next-question").addEventListener("click",()=>{if(locked)nextQuestion();else checkAnswer();});
   $("#play-again").addEventListener("click",openQuiz);
   $("#back-to-board").addEventListener("click",closeQuiz);
   $("#reset-progress").addEventListener("click",()=>{

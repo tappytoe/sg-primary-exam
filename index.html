@@ -3,92 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f6f1">
-  <meta name="description" content="A playful Singapore Primary 3–5 revision adventure. Practise maths, earn stars and learn from every answer.">
-  <title>Primary Quest — TappyToe</title>
-  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./questions.js" defer></script>
-  <script src="./app.js" defer></script>
+  <meta name="theme-color" content="#10111b">
+  <meta name="description" content="Playful Singapore Primary 3–5 maths practice. Choose a level, solve a mission and earn stars.">
+  <title>Primary Quest — TappyToe Arcade</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <script src="questions.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="topbar">
-      <a class="brand" href="./" aria-label="Primary Quest home">
-        <span class="brand-mark" aria-hidden="true">t<span>+</span></span>
-        <span><strong>TappyToe</strong><small>LEARN & PLAY</small></span>
-      </a>
-      <div class="top-note"><span class="live-dot"></span> MADE FOR SINGAPORE LEARNERS</div>
-      <button class="sound-toggle" id="reset-progress" type="button" title="Clear saved progress">↻ <span>Reset progress</span></button>
-    </header>
+  <header class="topbar">
+    <a class="back-home" href="https://tappytoe.github.io/" aria-label="Back to TappyToe Arcade">← <span>Arcade</span></a>
+    <a class="game-brand" href="./" aria-label="Primary Quest home"><span class="brand-icon">✳</span><span>PRIMARY <b>QUEST</b></span></a>
+    <div class="header-stats"><span id="starCount">★ <i id="stat-stars">0</i></span><button class="reset-btn" id="reset-progress" type="button" title="Reset saved progress" aria-label="Reset saved progress">↻</button></div>
+  </header>
+  <main>
+    <section class="game-hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span>✦</span> SINGAPORE LEARNING ADVENTURE</div>
+        <h1>Ready, set,<br><em>brain power!</em></h1>
+        <p>Pick your level, take on a maths mission and earn stars with every correct answer. Little wins add up.</p>
+        <button class="primary-btn" id="start-quest" type="button">Choose your quest <span>↓</span></button>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="hero-star hs-one">✦</div><div class="hero-star hs-two">✧</div><div class="hero-number">123<span>+</span></div><div class="hero-sticker">YOU'VE<br>GOT THIS!</div><div class="hero-caption">THINK • TRY • GROW</div></div>
+    </section>
 
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-star">✦</span> YOUR NEXT BIG ADVENTURE</div>
-          <h1>Small steps.<br><span>Big brain energy.</span></h1>
-          <p>Turn revision into a quest. Practise, collect stars, and get a little better every day.</p>
-          <div class="hero-actions">
-            <button class="primary-btn" id="start-quest" type="button">Start a quest <span aria-hidden="true">↗</span></button>
-            <div class="tiny-proof"><span class="proof-icon">✦</span><span><b>Learn at your pace</b><small>No timers. No pressure.</small></span></div>
-          </div>
-        </div>
-        <div class="hero-art" aria-label="Illustration of a cheerful little learning robot">
-          <div class="sunburst"></div><div class="float-star star-a">✦</div><div class="float-star star-b">✧</div>
-          <div class="planet-ring"></div>
-          <div class="bot"><div class="antenna"></div><div class="bot-head"><div class="ear ear-l"></div><div class="ear ear-r"></div><div class="eyes"><i></i><i></i></div><div class="smile"></div><div class="cheek cheek-l"></div><div class="cheek cheek-r"></div></div><div class="bot-body"><span>t+</span></div><div class="bot-foot foot-l"></div><div class="bot-foot foot-r"></div></div>
-          <div class="art-label label-one">YOU'VE GOT THIS!</div><div class="art-label label-two">✦ +1 STAR</div>
-        </div>
-        <div class="hero-bottom"><span>✦</span> CURIOUS MINDS WELCOME <span class="hero-line"></span> BUILT FOR LITTLE WINS <span>✦</span></div>
-      </section>
+    <section class="stats-strip" aria-label="Your progress">
+      <div class="stat-intro"><span class="stat-icon">✧</span><span><b>Your progress</b><small>Saved on this device</small></span></div>
+      <div class="stat"><strong id="stat-answered">0</strong><small>QUESTIONS TRIED</small></div>
+      <div class="stat"><strong id="stat-correct">0</strong><small>ANSWERS RIGHT</small></div>
+      <div class="stat"><strong><span class="gold">★</span> <i id="stat-stars-small">0</i></strong><small>STARS EARNED</small></div>
+    </section>
 
-      <section class="progress-strip" aria-label="Your progress">
-        <div class="progress-intro"><div class="progress-icon">✧</div><div><strong>Your adventure so far</strong><small>Every question counts.</small></div></div>
-        <div class="stat"><strong id="stat-answered">0</strong><small>QUESTIONS TRIED</small></div>
-        <div class="stat"><strong id="stat-correct">0</strong><small>ANSWERS RIGHT</small></div>
-        <div class="stat stars-stat"><strong><span>★</span> <i id="stat-stars">0</i></strong><small>STARS EARNED</small></div>
-      </section>
+    <section class="quest-section" id="quests">
+      <div class="section-title"><div><div class="eyebrow">STEP 1 <span>·</span> CHOOSE YOUR LEVEL</div><h2>Where are you up to?</h2><p>Choose your school year to get questions at your level.</p></div><span class="section-spark">✳</span></div>
+      <div class="grade-picker" role="group" aria-label="Choose primary level">
+        <button class="grade-card selected" data-grade="3" aria-pressed="true" type="button"><span class="grade-badge">P3</span><span class="grade-copy"><b>Primary 3</b><small>Build your foundations</small></span><span class="grade-check">✓</span></button>
+        <button class="grade-card" data-grade="4" aria-pressed="false" type="button"><span class="grade-badge lilac">P4</span><span class="grade-copy"><b>Primary 4</b><small>Level up your skills</small></span><span class="grade-check">✓</span></button>
+        <button class="grade-card" data-grade="5" aria-pressed="false" type="button"><span class="grade-badge peach">P5</span><span class="grade-copy"><b>Primary 5</b><small>Take on bigger challenges</small></span><span class="grade-check">✓</span></button>
+      </div>
+    </section>
 
-      <section class="grade-section" id="quests">
-        <div class="section-heading"><div><div class="eyebrow">PICK YOUR PATH</div><h2>What year are you in?</h2><p>Choose your level. We'll meet you where you are.</p></div><div class="heading-doodle">✳</div></div>
-        <div class="grade-picker" role="group" aria-label="Choose primary level">
-          <button class="grade-card selected" data-grade="3" type="button"><span class="grade-badge">P3</span><span class="grade-name">Primary 3</span><small>Build your foundations</small><span class="grade-arrow">↗</span></button>
-          <button class="grade-card" data-grade="4" type="button"><span class="grade-badge badge-lilac">P4</span><span class="grade-name">Primary 4</span><small>Level up your skills</small><span class="grade-arrow">↗</span></button>
-          <button class="grade-card" data-grade="5" type="button"><span class="grade-badge badge-peach">P5</span><span class="grade-name">Primary 5</span><small>Take on bigger challenges</small><span class="grade-arrow">↗</span></button>
-        </div>
-      </section>
-
-      <section class="subjects-section">
-        <div class="section-heading subject-heading"><div><div class="eyebrow">YOUR QUEST BOARD <span class="mini-spark">✦</span></div><h2>Choose a subject</h2><p id="subject-subtitle">Pick a mission and start collecting those little wins.</p></div><span class="quest-count" id="quest-count">01 PLAYABLE QUEST</span></div>
-        <div class="subject-grid">
-          <article class="subject-card maths-card">
-            <div class="subject-art math-art"><span class="math-symbol symbol-plus">+</span><span class="math-symbol symbol-equals">=</span><span class="math-symbol symbol-seven">7</span><span class="math-symbol symbol-dot">✦</span><span class="mini-cube"></span></div>
-            <div class="subject-content"><div class="subject-meta"><span class="subject-tag">MATHS</span><span class="playable-tag"><i></i> PLAY NOW</span></div><h3>Maths Market</h3><p>Shop, solve and sharpen your number skills. Every right answer earns a star.</p><div class="card-footer"><span class="topic-count" id="math-topic-count">3 topics · P3–P5</span><button class="round-arrow launch-maths" type="button" aria-label="Play Maths Market">↗</button></div></div>
-          </article>
-          <article class="subject-card science-card"><div class="subject-art science-art"><span class="science-planet">◉</span><span class="science-leaf">✳</span><span class="science-orbit"></span></div><div class="subject-content"><div class="subject-meta"><span class="subject-tag">SCIENCE</span><span class="soon-tag">COMING SOON</span></div><h3>Curiosity Lab</h3><p>Explore living things, matter and the world around you.</p><div class="card-footer"><span class="topic-count">Discover & investigate</span><span class="lock-mark">✧</span></div></div></article>
-          <article class="subject-card english-card"><div class="subject-art english-art"><span class="book-shape">Aa</span><span class="book-spark">✦</span><span class="book-line line-one"></span><span class="book-line line-two"></span></div><div class="subject-content"><div class="subject-meta"><span class="subject-tag">ENGLISH</span><span class="soon-tag">COMING SOON</span></div><h3>Word Wizard</h3><p>Play with vocabulary, grammar and reading comprehension.</p><div class="card-footer"><span class="topic-count">Words unlock worlds</span><span class="lock-mark">✧</span></div></div></article>
-          <article class="subject-card languages-card"><div class="subject-art language-art"><span class="lang-char">文</span><span class="lang-char lang-two">அ</span><span class="lang-char lang-three">A</span><span class="language-spark">✳</span></div><div class="subject-content"><div class="subject-meta"><span class="subject-tag">MOTHER TONGUE</span><span class="soon-tag">COMING SOON</span></div><h3>Language Garden</h3><p>Grow confidence in Chinese, Malay and Tamil, one word at a time.</p><div class="card-footer"><span class="topic-count">More ways to express</span><span class="lock-mark">✧</span></div></div></article>
-        </div>
-      </section>
-
-      <section class="daily-note"><div class="note-spark">✦</div><div><strong>A little reminder</strong><p>You don't have to know everything today. Just learn one new thing.</p></div><span class="note-smiley">☺</span></section>
-      <footer><a class="footer-brand" href="./">TappyToe<span> ✦</span></a><span>Made for curious learners in Singapore.</span><span class="footer-right">PLAY KIND. KEEP GROWING.</span></footer>
-    </main>
-  </div>
+    <section class="quest-section subject-section">
+      <div class="section-title"><div><div class="eyebrow">STEP 2 <span>·</span> PICK A MISSION</div><h2>Choose your quest</h2><p>Every mission is a chance to learn something new.</p></div><span class="mission-count">1 MISSION READY</span></div>
+      <div class="mission-grid">
+        <article class="mission-card maths-mission">
+          <div class="mission-art" aria-hidden="true"><span class="math-piece plus">+</span><span class="math-piece equals">=</span><span class="math-piece number">7</span><span class="math-spark">✦</span></div>
+          <div class="mission-content"><div class="mission-meta"><span>MATHS • P3–P5</span><span class="ready"><i></i> PLAY NOW</span></div><h3>Maths Market</h3><p>Crunch numbers, solve everyday problems and practise key maths skills with friendly hints along the way.</p><div class="mission-bottom"><span id="math-topic-count">6 questions per level</span><button class="play-btn launch-maths" type="button">Play mission <span>↗</span></button></div></div>
+        </article>
+        <article class="mission-card future-mission"><div class="future-art" aria-hidden="true"><span>✹</span><i>?</i></div><div class="mission-content"><div class="mission-meta"><span>SCIENCE</span><span class="coming">COMING SOON</span></div><h3>Curiosity Lab</h3><p>Explore living things, materials and the world around you.</p><div class="mission-bottom"><span>Discovery missions</span><span class="lock-icon">✧</span></div></div></article>
+        <article class="mission-card future-mission"><div class="future-art english-art" aria-hidden="true"><span>Aa</span><i>✦</i></div><div class="mission-content"><div class="mission-meta"><span>ENGLISH</span><span class="coming">COMING SOON</span></div><h3>Word Wizard</h3><p>Build confidence with vocabulary, grammar and reading.</p><div class="mission-bottom"><span>Words unlock worlds</span><span class="lock-icon">✧</span></div></div></article>
+        <article class="mission-card future-mission"><div class="future-art language-art" aria-hidden="true"><span>文 அ A</span><i>✳</i></div><div class="mission-content"><div class="mission-meta"><span>MOTHER TONGUE</span><span class="coming">COMING SOON</span></div><h3>Language Garden</h3><p>Grow confidence in Chinese, Malay and Tamil.</p><div class="mission-bottom"><span>Language missions</span><span class="lock-icon">✧</span></div></div></article>
+      </div>
+    </section>
+    <section class="kind-note"><span>✦</span><div><b>Remember: progress, not perfection.</b><p>Take your time, learn from each answer and keep going.</p></div><span class="smile">☺</span></section>
+  </main>
+  <footer><span>PRIMARY QUEST <i>✦</i> A TAPPYTOE ARCADE GAME</span><a href="https://tappytoe.github.io/">← Back to TappyToe Arcade</a></footer>
 
   <div class="modal-backdrop" id="quiz-modal" hidden>
     <section class="quiz-panel" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
       <div class="quiz-top"><button class="back-btn" id="close-quiz" type="button">← <span>Quest board</span></button><span class="quiz-chip" id="quiz-grade">PRIMARY 3</span><span class="quiz-progress-text" id="quiz-progress-text">1 OF 5</span></div>
       <div class="quiz-progress-track"><div id="quiz-progress-fill"></div></div>
       <div id="quiz-stage">
-        <div class="quiz-kicker"><span>✦</span> MATHS MARKET</div>
-        <h2 id="quiz-title">Ready for your first mission?</h2>
-        <p class="quiz-instructions" id="quiz-instructions">Choose the best answer. You can take your time.</p>
+        <div class="quiz-kicker"><span>✦</span> MATHS MARKET</div><h2 id="quiz-title">Ready for your first mission?</h2><p class="quiz-instructions" id="quiz-instructions">Choose the best answer. You can take your time.</p>
         <div class="question-card"><div class="question-topic" id="question-topic">NUMBER SENSE</div><h3 id="question-text"></h3><div class="answer-grid" id="answer-grid"></div><div id="feedback" class="feedback" hidden aria-live="polite"></div><button id="next-question" class="primary-btn next-btn" type="button" disabled>Check answer <span>→</span></button></div>
       </div>
-      <div id="results-stage" hidden>
-        <div class="results-icon">★</div><div class="quiz-kicker">MISSION COMPLETE</div><h2 id="results-title">Look at you go!</h2><p id="results-copy">Every question is a step forward.</p><div class="results-score"><div><strong id="results-correct">0/5</strong><small>CORRECT</small></div><div><strong id="results-earned">0 ★</strong><small>STARS THIS QUEST</small></div></div><button class="primary-btn" id="play-again" type="button">Play another quest <span>↗</span></button><button class="text-btn" id="back-to-board" type="button">Back to quest board</button>
-      </div>
+      <div id="results-stage" hidden><div class="results-icon">★</div><div class="quiz-kicker">MISSION COMPLETE</div><h2 id="results-title">Look at you go!</h2><p id="results-copy">Every question is a step forward.</p><div class="results-score"><div><strong id="results-correct">0/5</strong><small>CORRECT</small></div><div><strong id="results-earned">0 ★</strong><small>STARS THIS QUEST</small></div></div><button class="primary-btn" id="play-again" type="button">Play another quest <span>↗</span></button><button class="text-btn" id="back-to-board" type="button">Back to quest board</button></div>
     </section>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

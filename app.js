@@ -12,13 +12,14 @@
     $("#stat-answered").textContent = progress.answered;
     $("#stat-correct").textContent = progress.correct;
     $("#stat-stars").textContent = progress.stars;
+    $("#stat-stars-small").textContent = progress.stars;
   }
   function shuffle(items){const result=[...items];for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}return result;}
   function chooseGrade(value){
     grade = Number(value);
     document.querySelectorAll(".grade-card").forEach(card=>{const active=Number(card.dataset.grade)===grade;card.classList.toggle("selected",active);card.setAttribute("aria-pressed",String(active));});
     $("#quiz-grade").textContent = "PRIMARY " + grade;
-    $("#math-topic-count").textContent = (window.PRIMARY_QUESTIONS||[]).filter(q=>q.grade===grade).length/2 + " topics · P" + grade;
+    $("#math-topic-count").textContent = (window.PRIMARY_QUESTIONS||[]).filter(q=>q.grade===grade).length + " questions · P" + grade;
   }
   function openQuiz(){
     const all=(window.PRIMARY_QUESTIONS||[]).filter(q=>q.grade===grade);
